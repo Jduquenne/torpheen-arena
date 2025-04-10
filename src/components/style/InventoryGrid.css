@@ -1,0 +1,39 @@
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* Optionnel : limiter la taille max sur très grands écrans */
+@media (min-width: 1600px) {
+    .inventory-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1400px) {
+    .inventory-grid {
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 1150px) {
+    .inventory-grid {
+        min-width: 90vw;
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 915px) {
+    .inventory-grid {
+        min-width: 90vw;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 auto;
+    }
+}

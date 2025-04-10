@@ -1,0 +1,28 @@
+.last-loot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #fef7dc;
+    padding: 0.6rem 1rem;
+    border-radius: 0.75rem;
+    border: 2px dashed #888;
+    animation: pop 0.5s ease;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.loot-name {
+    color: #111;
+    margin-bottom: 0 !important;
+}
+
+.loot-emoji {
+    font-size: 1.5rem;
+}
+
+
+.loot-rarity {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
