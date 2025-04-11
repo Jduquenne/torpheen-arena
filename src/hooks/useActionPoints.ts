@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { simpleHash } from "../lib/hash";
 import { xorDecrypt, xorEncrypt } from "../lib/crypto";
 
-const MAX_POINTS = 5;
+const MAX_POINTS = 20;
 const SECRET = import.meta.env.VITE_ACTION_SECRET;
 const CRYPTO_KEY = import.meta.env.VITE_ACTION_KEY;
 const STORAGE_KEY = "actionPointsSecure";
