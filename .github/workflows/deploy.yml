@@ -25,6 +25,8 @@ jobs:
         run: |
           echo "VITE_ACTION_SECRET=${{ secrets.VITE_ACTION_SECRET }}" >> .env
           echo "VITE_ACTION_KEY=${{ secrets.VITE_ACTION_KEY }}" >> .env
+          echo "VITE_INVENTORY_SECRET=${{ secrets.VITE_INVENTORY_SECRET }}" >> .env
+          echo "VITE_INVENTORY_KEY=${{ secrets.VITE_INVENTORY_KEY }}" >> .env
           echo "VITE_DEV_MODE=false" >> .env
 
       - name: Build Vite project
