@@ -40,7 +40,7 @@ export function HeaderBar({
             <div className="header-blur" />
 
             <div className="header-content">
-                <h1 className="title">🎒 Mon Inventaire</h1>
+                <h1 className="title">Torpheen Arena</h1>
 
                 <div className="main-actions">
                     <ActionPoints points={points} />
