@@ -3,7 +3,7 @@ name: Deploy Vite App to GitHub Pages
 on:
   push:
     branches:
-      - main # ou 'master' selon ton branchement
+      - master # ou 'master' selon ton branchement
 
 jobs:
   deploy:
