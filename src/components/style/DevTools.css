@@ -3,9 +3,9 @@
     bottom: 1rem;
     left: 1rem;
     z-index: 9999;
-    background-color: #1e293b;
+    background-color: var(--bg-card);
     color: white;
-    border: 1px solid #475569;
+    border: 1px solid var(--border-card);
     border-radius: 0.5rem;
     padding: 0.5rem;
     font-size: 0.9rem;
@@ -24,7 +24,7 @@
     margin-top: 0.5rem;
     padding: 0.4rem 0.6rem;
     font-size: 0.85rem;
-    background-color: #334155;
+    background-color: var(--button-card);
     color: white;
     border: none;
     border-radius: 0.3rem;
@@ -33,5 +33,5 @@
 }
 
 .devtools button:hover {
-    background-color: #64748b;
+    background-color: var(--hover-card);
 }

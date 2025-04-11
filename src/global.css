@@ -1,0 +1,49 @@
+/* RESET minimal */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ROOT GLOBAL */
+:root {
+    --font-main: 'Segoe UI', sans-serif;
+
+    /* Backgrounds */
+    --bg-main: #0f172a;
+    --bg-header: #1f2937;
+    --bg-card: #1e293b;
+    --bg-button: #334155;
+    --bg-button-hover: #64748b;
+    --bg-button-draw: #ffcc00;
+    --bg-button-draw-hover: #64748b;
+    --bg-button-draw-box: #b39200;
+    --bg-button-draw-disabled: #999;
+
+    /* Borders */
+    --border-card: #475569;
+
+    /* Texts */
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+
+    /* Rarity Colors */
+    --rarity-common: #9ca3af;
+    --rarity-uncommon: #59c173;
+    --rarity-rare: #3b82f6;
+    --rarity-epic: #8b5cf6;
+    --rarity-mythic: #d946ef;
+    --rarity-legendary: #f97316;
+    --rarity-relic: #ffd700;
+
+    /* Accent */
+    --accent-yellow: #ffcc00;
+}
+
+/* Global body */
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.5;
+}

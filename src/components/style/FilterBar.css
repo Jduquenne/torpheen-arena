@@ -11,16 +11,6 @@
     box-shadow: inset 0 0 0 2px #2e3a4a;
 }
 
-.filter-slider {
-    position: absolute;
-    top: 5px;
-    bottom: 5px;
-    border-radius: 0.5rem;
-    background-color: rgb(206, 206, 206);
-    transition: all 0.25s ease;
-    z-index: 0;
-}
-
 .filter-btn {
     position: relative;
     border: none;
@@ -30,9 +20,8 @@
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    background-color: #2e3a4a;
+    background-color: var(--bg-button);
     color: white;
-    transition: all 0.2s ease;
     z-index: 1;
     display: flex;
     align-items: center;
@@ -54,34 +43,34 @@
 
 /* Couleurs par rareté (exemples) */
 .filter-btn.rarity-common {
-    background-color: #9ca3af;
+    background-color: var(--rarity-common);
 }
 
 .filter-btn.rarity-uncommon {
-    background-color: #59c173;
+    background-color: var(--rarity-uncommon);
 }
 
 .filter-btn.rarity-rare {
-    background-color: #3b82f6;
+    background-color: var(--rarity-rare);
 }
 
 .filter-btn.rarity-epic {
-    background-color: #8b5cf6;
+    background-color: var(--rarity-epic);
 }
 
 .filter-btn.rarity-mythic {
-    background-color: #d946ef;
+    background-color: var(--rarity-mythic);
 }
 
 .filter-btn.rarity-legendary {
-    background-color: #f97316;
+    background-color: var(--rarity-legendary);
 }
 
 .filter-btn.rarity-relic {
-    background-color: #ffd700;
+    background-color: var(--rarity-relic);
     color: black;
 }
 
 .filter-btn.rarity-all {
-    background-color: #4b5563;
+    background-color: var(--bg-button);
 }

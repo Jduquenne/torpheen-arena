@@ -4,21 +4,21 @@
     cursor: pointer;
     border: none;
     border-radius: 0.5rem;
-    background-color: #ffcc00;
+    background-color: var(--bg-button-draw);
     color: black;
     font-weight: bold;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 0 #b39200;
+    box-shadow: 0 4px 0 var(--bg-button-draw-box);
 }
 
 .draw-button:hover:not(:disabled) {
-    background-color: #ffd700;
+    background-color: var(--bg-button-draw-hover);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-2px);
+    transform: translateY(2px);
 }
 
 .draw-button:disabled {
-    background-color: #999;
+    background-color: var(--bg-button-draw-disabled);
     color: #555;
     cursor: not-allowed;
     box-shadow: none;
