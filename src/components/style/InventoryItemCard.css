@@ -1,4 +1,5 @@
 .inventory-card {
+    position: relative;
     background-color: #1a2332;
     color: white;
     border-radius: 12px;
@@ -100,6 +101,41 @@
 }
 
 .inventory-visual {
-    font-size: 4rem;
-    margin: 12px 0;
+    width: 100%;
+    margin: 3px;
+}
+
+.inventory-visual img {
+    width: 100%;
+}
+
+.loot-image-wrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 20%;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.loot-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+    z-index: 2;
+    position: relative;
+}
+
+.inventory-quantity-bubble {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 10;
 }

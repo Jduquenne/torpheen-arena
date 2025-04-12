@@ -23,11 +23,25 @@ export const rarityColor = (rarity: Rarity): string => {
     }
 };
 
+const rarityGlow: Record<Rarity, string> = {
+    [Rarity.COMMON]: "var(--glow-common)",
+    [Rarity.UNCOMMON]: "var(--glow-uncommon)",
+    [Rarity.RARE]: "var(--glow-rare)",
+    [Rarity.MYTHIC]: "var(--glow-mythic)",
+    [Rarity.LEGENDARY]: "var(--glow-legendary)",
+    [Rarity.EPIC]: "var(--glow-epic)",
+    [Rarity.RELIC]: "var(--glow-relic)",
+};
+
 export function InventoryItemCard({ item }: { item: InventoryItem }) {
     return (
         <div className="inventory-card">
+            {item.count > 1 && (
+                <div className="inventory-quantity-bubble">x{item.count}</div>
+            )}
+
             <div className="inventory-type">inventory</div>
-            <div className="inventory-name">{item.name}</div>
+            <div className="inventory-name">{item.nameKey}</div>
 
             <div className="inventory-tags">
                 <div className={`inventory-rarity inventory-rarity--${item.rarity.toLowerCase()}`}>
@@ -35,7 +49,12 @@ export function InventoryItemCard({ item }: { item: InventoryItem }) {
                 </div>
             </div>
 
-            <div className="inventory-visual">{item.emoji}</div>
+            <div
+                className="loot-image-wrapper"
+                style={{ "--glow-color": rarityGlow[item.rarity] } as React.CSSProperties}
+            >
+                <img src={item.image} alt="weapons" className="loot-image" />
+            </div>
         </div>
     );
 }

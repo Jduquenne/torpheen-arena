@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { generateLoot } from "../lib/generateLoot";
 import { LootItem } from "../interfaces";
 import "./style/DrawButton.css"; // 💅 nouveau fichier CSS
@@ -10,8 +11,11 @@ interface Props {
 }
 
 export function DrawButton({ points, usePoint, onLoot, disabled = false }: Props) {
+    const [cooldown, setCooldown] = useState(false);
+
     const handleClick = () => {
-        if (disabled) return;
+        if (disabled || cooldown) return;
+
         const success = usePoint();
         if (!success) {
             alert("😴 Pas assez de points !");
@@ -20,15 +24,17 @@ export function DrawButton({ points, usePoint, onLoot, disabled = false }: Props
 
         const loot = generateLoot();
         onLoot(loot);
+        setCooldown(true);
+        setTimeout(() => setCooldown(false), 1000);
     };
 
     return (
         <button
-            className="draw-button"
             onClick={handleClick}
-            disabled={points <= 0 || disabled}
+            disabled={points <= 0 || disabled || cooldown}
+            className="draw-button"
         >
-            {disabled ? "Reviens demain"! : "🎲 Tirer dans la roulotte"}
+            🎲 Tirer dans la roulotte
         </button>
     );
 }
