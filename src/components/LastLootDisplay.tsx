@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { LootItem } from "../interfaces";
 import { rarityColor } from "./InventoryItemCard";
 import "./style/LastLootDisplay.css";
+import { useTranslation } from "react-i18next";
 
 export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
+    const { t } = useTranslation();
+
     const [visible, setVisible] = useState(false);
     const [internalLoot, setInternalLoot] = useState<LootItem | null>(null);
 
@@ -34,7 +37,7 @@ export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
                     <img src={internalLoot.image} alt="weapon" />
                 </div>
                 <div className="last-loot-details">
-                    <div className="last-loot-name">{internalLoot.nameKey}</div>
+                    <div className="last-loot-name">{t(internalLoot.nameKey)}</div>
                     <div
                         className="last-loot-rarity"
                         style={{ color: rarityColor(internalLoot.rarity) }}

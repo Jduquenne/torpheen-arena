@@ -6,6 +6,7 @@ import "./style/HeaderBar.css";
 import { LastLootDisplay } from "./LastLootDisplay";
 import { DevTools } from "./DevTools";
 import { ActionPoints } from "./ActionPoints";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 interface Props {
     filter: FilterType;
@@ -40,7 +41,11 @@ export function HeaderBar({
             <div className="header-blur" />
 
             <div className="header-content">
-                <h1 className="title">Torpheen Arena</h1>
+                <div className="header-top">
+                    <h1 className="title">🎒 Mon Inventaire</h1>
+                    <LanguageSwitcher />
+                </div>
+
 
                 <div className="main-actions">
                     <ActionPoints points={points} />

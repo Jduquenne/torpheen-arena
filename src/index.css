@@ -28,7 +28,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 98vw;
+  background-image: url("./assets/background/background_large_screen_2.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100vw;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  /* floute un peu derrière */
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-image: url("./assets/background/background_mobile_screen.webp");
+  }
 }
 
 h1 {

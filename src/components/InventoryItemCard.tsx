@@ -1,5 +1,6 @@
 import { InventoryItem } from "../interfaces";
 import { Rarity } from "../types";
+import { useTranslation } from "react-i18next";
 import "./style/InventoryItemCard.css"
 
 export const rarityColor = (rarity: Rarity): string => {
@@ -34,6 +35,7 @@ const rarityGlow: Record<Rarity, string> = {
 };
 
 export function InventoryItemCard({ item }: { item: InventoryItem }) {
+    const { t } = useTranslation();
     return (
         <div className="inventory-card">
             {item.count > 1 && (
@@ -41,7 +43,7 @@ export function InventoryItemCard({ item }: { item: InventoryItem }) {
             )}
 
             <div className="inventory-type">inventory</div>
-            <div className="inventory-name">{item.nameKey}</div>
+            <div className="inventory-name">{t(item.nameKey)}</div>
 
             <div className="inventory-tags">
                 <div className={`inventory-rarity inventory-rarity--${item.rarity.toLowerCase()}`}>
