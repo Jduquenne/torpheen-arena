@@ -18,9 +18,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 15;
 
-  const filteredInventory = filter === "ALL"
+  const filteredInventory = (filter === "ALL"
     ? inventory
-    : inventory.filter((item) => item.rarity === filter);
+    : inventory.filter((item) => item.rarity === filter)
+  ).slice().reverse();
 
   const paginatedInventory = filteredInventory.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
