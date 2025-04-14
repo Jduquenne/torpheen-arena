@@ -1,8 +1,8 @@
-import { InventoryItem } from "../interfaces";
+import { InventoryLootItem } from "../interfaces";
 import { InventoryGameCard } from "./InventoryGameCard";
-import "./style/InventoryGrid.css";
+import "../styles/InventoryGrid.css";
 
-export function InventoryGrid({ items }: { items: InventoryItem[] }) {
+export function InventoryGrid({ items }: { items: InventoryLootItem[] }) {
     if (items.length === 0) return <p>Tu n'as encore rien gagné...</p>;
 
     return (

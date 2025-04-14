@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { InventoryLootItem } from '../interfaces';
-import './style/InventoryGameCard.css';
+import '../styles/InventoryGameCard.css';
 
 export function InventoryGameCard({ item }: { item: InventoryLootItem }) {
     const { t } = useTranslation();

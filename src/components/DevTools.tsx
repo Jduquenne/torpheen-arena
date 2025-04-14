@@ -1,4 +1,4 @@
-import "./style/DevTools.css";
+import "../styles/DevTools.css";
 
 interface Props {
     onResetPA: () => void;

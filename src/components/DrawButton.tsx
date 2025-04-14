@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { generateLoot } from "../lib/generateLoot";
 import { LootItem } from "../interfaces";
-import "./style/DrawButton.css"; // 💅 nouveau fichier CSS
+import "../styles/DrawButton.css"; // 💅 nouveau fichier CSS
 
 interface Props {
     points: number;

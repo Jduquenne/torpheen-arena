@@ -1,6 +1,6 @@
 import { InventoryLootItem } from "../interfaces";
 import { FilterType, Rarity } from "../types";
-import "./style/FilterBar.css"
+import "../styles/FilterBar.css"
 
 interface Props {
     filter: FilterType;

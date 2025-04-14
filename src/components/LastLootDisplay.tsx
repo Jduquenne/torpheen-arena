@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { LootItem } from "../interfaces";
 import { rarityColor } from "./InventoryItemCard";
-import "./style/LastLootDisplay.css";
+import "../styles/LastLootDisplay.css";
 import { useTranslation } from "react-i18next";
 
 export function LastLootDisplay({ loot }: { loot: LootItem | null }) {

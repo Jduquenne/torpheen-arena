@@ -2,7 +2,7 @@ import { InventoryLootItem, LootItem } from "../interfaces";
 import { FilterType } from "../types";
 import { DrawButton } from "./DrawButton";
 import { FilterBar } from "./FilterBar";
-import "./style/HeaderBar.css";
+import "../styles/HeaderBar.css";
 import { LastLootDisplay } from "./LastLootDisplay";
 import { DevTools } from "./DevTools";
 import { ActionPoints } from "./ActionPoints";

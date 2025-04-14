@@ -1,4 +1,4 @@
-import "./style/ActionPoints.css";
+import "../styles/ActionPoints.css";
 interface Props {
     actionPoints: number;
 }

@@ -1,7 +1,7 @@
-import { InventoryItem } from "../interfaces";
+import { InventoryLootItem } from "../interfaces";
 import { Rarity } from "../types";
 import { useTranslation } from "react-i18next";
-import "./style/InventoryItemCard.css"
+import "../styles/InventoryItemCard.css"
 
 export const rarityColor = (rarity: Rarity): string => {
     switch (rarity) {
@@ -24,25 +24,25 @@ export const rarityColor = (rarity: Rarity): string => {
     }
 };
 
-export function InventoryItemCard({ item }: { item: InventoryItem }) {
+export function InventoryItemCard({ item }: { item: InventoryLootItem }) {
     const { t } = useTranslation();
     return (
         <div className="inventory-card">
             {item.count > 1 && (
-                <div className={`inventory-quantity-bubble rarity--${item.rarity.toLowerCase()}`}>x{item.count}</div>
+                <div className={`inventory-quantity-bubble rarity--${item.loot.rarity.toLowerCase()}`}>x{item.count}</div>
             )}
 
             <div className="inventory-type">inventory</div>
-            <div className="inventory-name">{t(item.nameKey)}</div>
+            <div className="inventory-name">{t(item.loot.nameKey)}</div>
 
             <div className="inventory-tags">
-                <div className={`inventory-rarity inventory-rarity--${item.rarity.toLowerCase()}`}>
-                    {item.rarity}
+                <div className={`inventory-rarity inventory-rarity--${item.loot.rarity.toLowerCase()}`}>
+                    {item.loot.rarity}
                 </div>
             </div>
 
             <div className="loot-image-wrapper">
-                <img src={item.image} alt="weapons" className="loot-image" />
+                <img src={item.loot.image} alt="weapons" className="loot-image" />
             </div>
         </div>
     );
