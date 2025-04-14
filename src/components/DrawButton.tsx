@@ -5,23 +5,15 @@ import "./style/DrawButton.css"; // 💅 nouveau fichier CSS
 
 interface Props {
     points: number;
-    usePoint: () => boolean;
     onLoot: (item: LootItem) => void;
-    disabled?: boolean;
+    hasActionPoint?: boolean;
 }
 
-export function DrawButton({ points, usePoint, onLoot, disabled = false }: Props) {
+export function DrawButton({ onLoot, hasActionPoint = true }: Props) {
     const [cooldown, setCooldown] = useState(false);
 
     const handleClick = () => {
-        if (disabled || cooldown) return;
-
-        const success = usePoint();
-        if (!success) {
-            alert("😴 Pas assez de points !");
-            return;
-        }
-
+        if (!hasActionPoint || cooldown) return;
         const loot = generateLoot();
         onLoot(loot);
         setCooldown(true);
@@ -31,10 +23,10 @@ export function DrawButton({ points, usePoint, onLoot, disabled = false }: Props
     return (
         <button
             onClick={handleClick}
-            disabled={points <= 0 || disabled || cooldown}
+            disabled={!hasActionPoint || cooldown}
             className="draw-button"
         >
-            {disabled ? ("Reviens demain !") : ("Tourne la roulette !")}
+            {hasActionPoint ? ("Tourne la roulette !") : ("Reviens demain !")}
         </button>
     );
 }

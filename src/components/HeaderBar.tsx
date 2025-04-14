@@ -1,4 +1,4 @@
-import { InventoryItem, LootItem } from "../interfaces";
+import { InventoryLootItem, LootItem } from "../interfaces";
 import { FilterType } from "../types";
 import { DrawButton } from "./DrawButton";
 import { FilterBar } from "./FilterBar";
@@ -8,34 +8,31 @@ import { DevTools } from "./DevTools";
 import { ActionPoints } from "./ActionPoints";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
-interface Props {
+interface HearderBarProps {
     filter: FilterType;
-    setFilter: (r: FilterType) => void;
-    inventory: InventoryItem[];
-    onLoot: (item: LootItem) => void;
-    points: number;
-    usePoint: () => boolean;
-    disabled?: boolean;
+    inventory: InventoryLootItem[];
+    actionPoints: number;
+    hasActionPoint: boolean;
     lastLoot?: LootItem;
-    resetPA: () => void;
+    setFilter: (r: FilterType) => void;
+    onLoot: (item: LootItem) => void;
+    addActionPoint: () => void;
+    resetActionPoints: () => void;
     resetInventory: () => void;
-    addPa: () => void;
 }
 
 export function HeaderBar({
     filter,
-    setFilter,
     inventory,
-    onLoot,
-    usePoint,
-    points,
-    disabled = false,
+    actionPoints,
+    hasActionPoint,
     lastLoot,
-    resetPA,
-    resetInventory,
-    addPa,
-
-}: Props) {
+    setFilter,
+    onLoot,
+    addActionPoint,
+    resetActionPoints,
+    resetInventory
+}: HearderBarProps) {
     return (
         <header className="header-bar">
             <div className="header-blur" />
@@ -48,17 +45,16 @@ export function HeaderBar({
 
 
                 <div className="main-actions">
-                    <ActionPoints points={points} />
+                    <ActionPoints actionPoints={actionPoints} />
 
                     <DrawButton
-                        points={points}
-                        usePoint={usePoint}
+                        points={actionPoints}
                         onLoot={onLoot}
-                        disabled={disabled}
+                        hasActionPoint={hasActionPoint}
                     />
 
                     {import.meta.env.VITE_DEV_MODE === "true" && (
-                        <DevTools onResetPA={resetPA} onResetInventory={resetInventory} onAddPA={addPa} />
+                        <DevTools onResetPA={resetActionPoints} onResetInventory={resetInventory} onAddPA={addActionPoint} />
                     )}
 
                     {lastLoot && <LastLootDisplay loot={lastLoot} />}

@@ -1,10 +1,11 @@
+import { InventoryLootItem } from "../interfaces";
 import { FilterType, Rarity } from "../types";
 import "./style/FilterBar.css"
 
 interface Props {
     filter: FilterType;
     setFilter: (r: FilterType) => void;
-    inventory: { rarity: Rarity }[];
+    inventory: InventoryLootItem[];
 }
 
 const FILTER_OPTIONS: { label: string; value: FilterType }[] = [
@@ -21,7 +22,7 @@ const FILTER_OPTIONS: { label: string; value: FilterType }[] = [
 export function FilterBar({ filter, setFilter, inventory }: Props) {
     const getCount = (type: FilterType) => {
         if (type === "ALL") return inventory.length;
-        return inventory.filter((item) => item.rarity === type).length;
+        return inventory.filter((item) => item.loot.rarity === type).length;
     };
 
     return (

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { useActionPoints } from "./hooks/useActionPoints";
-import { useInventory } from "./hooks/useInventory";
+import { usePlayerData } from "./hooks/usePlayerData";
 import { LootItem } from "./interfaces";
 import { FilterType } from "./types";
 import { InventoryGrid } from "./components";
@@ -9,8 +8,16 @@ import { InventoryPagination } from "./components/InventoryPagination";
 
 
 function App() {
-  const { points, addPoint, usePoint, resetPoint, isDrawDisabled, locked } = useActionPoints();
-  const { inventory, addItem } = useInventory();
+  const {
+    actionPoints,
+    inventory,
+    locked,
+    hasActionPoints,
+    spendPointAndAddItem,
+    addOneActionPoint,
+    resetActionPoints,
+    resetInventory,
+  } = usePlayerData();
 
   const [lastLoot, setLastLoot] = useState<LootItem | undefined>(undefined);
   const [filter, setFilter] = useState<FilterType>("ALL");
@@ -20,7 +27,7 @@ function App() {
 
   const filteredInventory = (filter === "ALL"
     ? inventory
-    : inventory.filter((item) => item.rarity === filter)
+    : inventory.filter((item) => item.loot.rarity === filter)
   ).slice().reverse();
 
   const paginatedInventory = filteredInventory.slice(
@@ -33,13 +40,8 @@ function App() {
     Math.ceil(filteredInventory.length / ITEMS_PER_PAGE)
   );
 
-  const resetInventory = () => {
-    localStorage.removeItem("inventorySecure");
-    window.location.reload();
-  };
-
   const handleLoot = (loot: LootItem) => {
-    addItem(loot);
+    spendPointAndAddItem(loot);
     setLastLoot(loot);
   };
 
@@ -67,13 +69,12 @@ function App() {
         setFilter={setFilter}
         inventory={inventory}
         onLoot={handleLoot}
-        usePoint={usePoint}
-        points={points}
-        disabled={isDrawDisabled}
+        actionPoints={actionPoints}
+        hasActionPoint={hasActionPoints}
         lastLoot={lastLoot}
         resetInventory={resetInventory}
-        resetPA={resetPoint}
-        addPa={addPoint}
+        resetActionPoints={resetActionPoints}
+        addActionPoint={addOneActionPoint}
       />
       {locked && (
         <div className="warning">⚠️ Triche détectée : vous ne pouvez plus jouer aujourd'hui.</div>

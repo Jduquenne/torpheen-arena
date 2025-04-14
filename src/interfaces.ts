@@ -8,10 +8,7 @@ export interface LootItem {
   chance: number;
 }
 
-export interface InventoryItem {
-  id: string;
-  nameKey: string;
-  rarity: Rarity;
-  image: string;
+export interface InventoryLootItem {
+  loot: LootItem;
   count: number;
 }
