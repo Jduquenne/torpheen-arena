@@ -1,5 +1,5 @@
 import { InventoryItem } from "../interfaces";
-import { InventoryItemCard } from "./InventoryItemCard";
+import { InventoryGameCard } from "./InventoryGameCard";
 import "./style/InventoryGrid.css";
 
 export function InventoryGrid({ items }: { items: InventoryItem[] }) {
@@ -8,7 +8,7 @@ export function InventoryGrid({ items }: { items: InventoryItem[] }) {
     return (
         <div className="inventory-grid">
             {items.map((item, index) => (
-                <InventoryItemCard key={index} item={item} />
+                <InventoryGameCard key={index} item={item} />
             ))}
         </div>
     );

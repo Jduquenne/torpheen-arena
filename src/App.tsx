@@ -9,7 +9,7 @@ import { InventoryPagination } from "./components/InventoryPagination";
 
 
 function App() {
-  const { points, addPoint, usePoint, isDrawDisabled } = useActionPoints();
+  const { points, addPoint, usePoint, resetPoint, isDrawDisabled, locked } = useActionPoints();
   const { inventory, addItem } = useInventory();
 
   const [lastLoot, setLastLoot] = useState<LootItem | undefined>(undefined);
@@ -32,13 +32,6 @@ function App() {
     1,
     Math.ceil(filteredInventory.length / ITEMS_PER_PAGE)
   );
-
-
-
-  const resetPA = () => {
-    localStorage.removeItem("actionPointsSecure");
-    window.location.reload();
-  };
 
   const resetInventory = () => {
     localStorage.removeItem("inventorySecure");
@@ -79,9 +72,12 @@ function App() {
         disabled={isDrawDisabled}
         lastLoot={lastLoot}
         resetInventory={resetInventory}
-        resetPA={resetPA}
+        resetPA={resetPoint}
         addPa={addPoint}
       />
+      {locked && (
+        <div className="warning">⚠️ Triche détectée : vous ne pouvez plus jouer aujourd'hui.</div>
+      )}
       <InventoryGrid items={paginatedInventory} />
       <InventoryPagination
         currentPage={currentPage}

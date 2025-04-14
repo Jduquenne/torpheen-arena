@@ -6,32 +6,22 @@ import "./style/InventoryItemCard.css"
 export const rarityColor = (rarity: Rarity): string => {
     switch (rarity) {
         case Rarity.COMMON:
-            return "gray";
+            return "#9ca3af";
         case Rarity.UNCOMMON:
-            return "black";
+            return "#59c173";
         case Rarity.RARE:
-            return "#00dd00";
+            return "#3b82f6";
         case Rarity.MYTHIC:
-            return "orange";
+            return "#d946ef";
         case Rarity.LEGENDARY:
-            return "#ffff00";
+            return "#f97316";
         case Rarity.EPIC:
-            return "#ff00ff";
+            return "#8b5cf6";
         case Rarity.RELIC:
-            return "#ff69B4";
+            return "#ffd700";
         default:
             return "#000";
     }
-};
-
-const rarityGlow: Record<Rarity, string> = {
-    [Rarity.COMMON]: "var(--glow-common)",
-    [Rarity.UNCOMMON]: "var(--glow-uncommon)",
-    [Rarity.RARE]: "var(--glow-rare)",
-    [Rarity.MYTHIC]: "var(--glow-mythic)",
-    [Rarity.LEGENDARY]: "var(--glow-legendary)",
-    [Rarity.EPIC]: "var(--glow-epic)",
-    [Rarity.RELIC]: "var(--glow-relic)",
 };
 
 export function InventoryItemCard({ item }: { item: InventoryItem }) {
@@ -39,7 +29,7 @@ export function InventoryItemCard({ item }: { item: InventoryItem }) {
     return (
         <div className="inventory-card">
             {item.count > 1 && (
-                <div className="inventory-quantity-bubble">x{item.count}</div>
+                <div className={`inventory-quantity-bubble rarity--${item.rarity.toLowerCase()}`}>x{item.count}</div>
             )}
 
             <div className="inventory-type">inventory</div>
@@ -51,10 +41,7 @@ export function InventoryItemCard({ item }: { item: InventoryItem }) {
                 </div>
             </div>
 
-            <div
-                className="loot-image-wrapper"
-                style={{ "--glow-color": rarityGlow[item.rarity] } as React.CSSProperties}
-            >
+            <div className="loot-image-wrapper">
                 <img src={item.image} alt="weapons" className="loot-image" />
             </div>
         </div>

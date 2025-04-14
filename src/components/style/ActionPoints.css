@@ -1,0 +1,41 @@
+.action-points-container {
+    display: flex;
+    align-items: center;
+    background-color: #2b1d3a;
+    border-radius: 0.6rem;
+    padding: 0.3rem 0.8rem;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    border: 2px solid #3f2c50;
+    color: #ffd700;
+    font-size: 1.3rem;
+    font-weight: bold;
+    gap: 0.4rem;
+    min-width: 80px;
+}
+
+.action-icon {
+    font-size: 1.5rem;
+}
+
+.action-text {
+    font-family: "Trebuchet MS", sans-serif;
+    color: #ffd700;
+    text-shadow: 0 0 3px #000;
+}
+
+.action-points-container.normal {
+    background-color: #2b1d3a;
+    color: #ffd700;
+}
+
+.action-points-container.low {
+    background-color: #4a1e1e;
+    color: #ff5555;
+    border-color: #7e2c2c;
+}
+
+.action-points-container.empty {
+    background-color: #1a1a1a;
+    color: #888;
+    border-color: #444;
+}

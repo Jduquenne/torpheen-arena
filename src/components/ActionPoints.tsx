@@ -1,17 +1,18 @@
+import "./style/ActionPoints.css";
 interface Props {
     points: number;
 }
 
 export function ActionPoints({ points }: Props) {
-    const getClassName = () => {
-        if (points <= 0) return "action-points empty";
-        if (points < 5) return "action-points low";
-        return "action-points ok";
+    const getClassByPoints = () => {
+        if (points === 0) return "empty";
+        if (points <= 3) return "low";
+        return "normal";
     };
-
     return (
-        <div className={getClassName()}>
-            ⚡ {points} coup{points > 1 ? "s" : ""} restant{points > 1 ? "s" : ""}
+        <div className={`action-points-container ${getClassByPoints()}`}>
+            <span className="action-icon">⚡</span>
+            <span className="action-text">{points}</span>
         </div>
     );
 }

@@ -11,12 +11,19 @@ const getTodayKey = () => new Date().toISOString().split("T")[0];
 
 export function useActionPoints() {
   const [points, setPoints] = useState(MAX_POINTS);
+  const [locked, setLocked] = useState(false);
 
   const addPoint = () => {
     const newPoints = Math.min(points + 1, MAX_POINTS);
     const today = getTodayKey();
     setPoints(newPoints);
     save(newPoints, today);
+  };
+
+  const resetPoint = () => {
+    const today = getTodayKey();
+    setPoints(MAX_POINTS);
+    save(MAX_POINTS, today);
   };
 
   const save = (points: number, day: string) => {
@@ -34,29 +41,37 @@ export function useActionPoints() {
     const today = getTodayKey();
 
     if (!raw) {
-      save(MAX_POINTS, today);
-      return MAX_POINTS;
+      save(0, today);
+      return 0;
     }
 
     try {
       const decrypted = xorDecrypt(raw, CRYPTO_KEY);
       const { points, day, checksum } = JSON.parse(decrypted);
-      const valid =
+      const isValid =
         checksum === simpleHash(SECRET + JSON.stringify({ points, day }));
-      if (!valid || day !== today) throw new Error("invalid");
+      if (!isValid || day !== today) throw new Error("invalid");
       return points;
     } catch {
-      save(MAX_POINTS, today);
-      return MAX_POINTS;
+      save(0, today);
+      return 0;
     }
   };
 
   useEffect(() => {
-    setPoints(load());
+    const todayPoints = load();
+
+    if (todayPoints === null) {
+      // Pas de données valides → triche ou reset manuel ?
+      // On lock l’accès
+      setLocked(true);
+    } else {
+      setPoints(todayPoints);
+    }
   }, []);
 
   const usePoint = () => {
-    if (points <= 0) return false;
+    if (locked || points === null || points <= 0) return false;
     const newPoints = points - 1;
     const today = getTodayKey();
     setPoints(newPoints);
@@ -66,8 +81,10 @@ export function useActionPoints() {
 
   return {
     points,
+    locked,
     usePoint,
     addPoint,
+    resetPoint,
     isDrawDisabled: points <= 0,
     isMaxed: points >= MAX_POINTS,
   };

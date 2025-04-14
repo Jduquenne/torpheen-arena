@@ -34,7 +34,7 @@ export function DrawButton({ points, usePoint, onLoot, disabled = false }: Props
             disabled={points <= 0 || disabled || cooldown}
             className="draw-button"
         >
-            🎲 Tirer dans la roulotte
+            {disabled ? ("Reviens demain !") : ("Tourne la roulette !")}
         </button>
     );
 }
