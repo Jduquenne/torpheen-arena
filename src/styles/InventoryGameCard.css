@@ -15,6 +15,24 @@
     animation: float 4s ease-in-out infinite;
 }
 
+@media (max-width: 585px) {
+    .card {
+        min-width: 90%;
+    }
+}
+
+@media (max-width: 915px) {
+    .card {
+        min-width: 90%;
+    }
+}
+
+@media (max-width: 1150px) {
+    .card {
+        min-width: 90%;
+    }
+}
+
 @keyframes float {
 
     0% {

@@ -5,6 +5,7 @@ import { FilterType } from "./types";
 import { InventoryGrid } from "./components";
 import { HeaderBar } from "./components/HeaderBar";
 import { InventoryPagination } from "./components/InventoryPagination";
+import { CustomCursor } from "./components/CustomCursor";
 
 
 function App() {
@@ -52,40 +53,43 @@ function App() {
   }, [filter]);
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        fontFamily: "sans-serif",
-        textAlign: "center",
-        top: 0,
-      }}
-    >
-      <HeaderBar
-        filter={filter}
-        setFilter={setFilter}
-        inventory={inventory}
-        onLoot={handleLoot}
-        actionPoints={actionPoints}
-        hasActionPoint={hasActionPoints}
-        lastLoot={lastLoot}
-        resetInventory={resetInventory}
-        resetActionPoints={resetActionPoints}
-        addActionPoint={addOneActionPoint}
-      />
-      {locked && (
-        <div className="warning">⚠️ Triche détectée : vous ne pouvez plus jouer aujourd'hui.</div>
-      )}
-      <InventoryGrid items={paginatedInventory} />
-      <InventoryPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onChange={(page) => setCurrentPage(page)}
-      />
-    </div>
+    <>
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          fontFamily: "sans-serif",
+          textAlign: "center",
+          top: 0,
+        }}
+      >
+        <HeaderBar
+          filter={filter}
+          setFilter={setFilter}
+          inventory={inventory}
+          onLoot={handleLoot}
+          actionPoints={actionPoints}
+          hasActionPoint={hasActionPoints}
+          lastLoot={lastLoot}
+          resetInventory={resetInventory}
+          resetActionPoints={resetActionPoints}
+          addActionPoint={addOneActionPoint}
+        />
+        {locked && (
+          <div className="warning">⚠️ Triche détectée : vous ne pouvez plus jouer aujourd'hui.</div>
+        )}
+        <InventoryGrid items={paginatedInventory} />
+        <InventoryPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onChange={(page) => setCurrentPage(page)}
+        />
+      </div>
+      <CustomCursor />
+    </>
   );
 }
 

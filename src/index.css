@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  cursor: none !important;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -106,4 +110,15 @@ button:focus-visible {
     transform: scale(1);
     opacity: 1;
   }
+}
+
+#custom-cursor {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  background: url('/assets/ui/cursor-default.png') 0 0, auto;
+  background-size: contain;
+  z-index: 9999;
+  transition: transform 0.05s ease;
 }
