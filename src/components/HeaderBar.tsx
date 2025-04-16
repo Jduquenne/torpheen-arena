@@ -48,7 +48,6 @@ export function HeaderBar({
                     <ActionPoints actionPoints={actionPoints} />
 
                     <DrawButton
-                        points={actionPoints}
                         onLoot={onLoot}
                         hasActionPoint={hasActionPoint}
                     />

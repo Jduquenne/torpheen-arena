@@ -8,4 +8,8 @@ export default defineConfig({
   server: {
     host: true,
   },
+  build: {
+    minify: "esbuild",
+    sourcemap: false,
+  },
 });

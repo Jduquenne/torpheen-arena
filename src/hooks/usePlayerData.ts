@@ -1,10 +1,9 @@
-// usePlayerData.ts
 import { useEffect, useState } from "react";
 import { simpleHash } from "../lib/hash";
 import { xorEncrypt, xorDecrypt } from "../lib/crypto";
 import { InventoryLootItem, LootItem } from "../interfaces";
 
-const STORAGE_KEY = "playerDataSecure";
+const STORAGE_KEY = "PLAYER_DATA_SECRURE";
 const SECRET = import.meta.env.VITE_ACTION_SECRET;
 const CRYPTO_KEY = import.meta.env.VITE_ACTION_KEY;
 const MAX_POINTS = 20;
@@ -90,6 +89,16 @@ export function usePlayerData() {
     save(updated);
   };
 
+  const addBonusActionPoint = (point: number) => {
+    if (!data || locked) return;
+    const updated = {
+      ...data,
+      actionPoints: Math.min(data.actionPoints + point, MAX_POINTS),
+    };
+    setData(updated);
+    save(updated);
+  };
+
   const hasActionPoints = !!data && data.actionPoints > 0;
 
   const spendPointAndAddItem = (loot: LootItem) => {
@@ -142,6 +151,7 @@ export function usePlayerData() {
     actionPoints: data?.actionPoints ?? 0,
     inventory: data?.inventory ?? [],
     locked,
+    addBonusActionPoint,
     spendPointAndAddItem,
     addOneActionPoint,
     hasActionPoints,

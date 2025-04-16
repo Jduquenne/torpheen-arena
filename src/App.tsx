@@ -1,24 +1,34 @@
 import { useEffect, useState } from "react";
 import { usePlayerData } from "./hooks/usePlayerData";
+import { useRandomBonusSpawn } from "./hooks/useRandomLootSpawn";
+
 import { LootItem } from "./interfaces";
 import { FilterType } from "./types";
-import { InventoryGrid } from "./components";
-import { HeaderBar } from "./components/HeaderBar";
-import { InventoryPagination } from "./components/InventoryPagination";
-import { CustomCursor } from "./components/CustomCursor";
+import { InventoryGrid, HeaderBar, InventoryPagination, CustomCursor, FloatingBonus } from "./components";
+import { useVersionCleanup } from "./hooks/useVersionCleanup";
 
 
 function App() {
+  // Check localstorage data by version
+  useVersionCleanup({
+    currentVersion: '1.1.0',
+    obsoleteKeys: ['actionPointsSecure', 'inventorySecure'],
+    renamedKeys: {
+      'playerDataSecure': 'PLAYER_DATA_SECURE',
+    }
+  });
   const {
     actionPoints,
     inventory,
     locked,
+    addBonusActionPoint,
     hasActionPoints,
     spendPointAndAddItem,
     addOneActionPoint,
     resetActionPoints,
     resetInventory,
   } = usePlayerData();
+  const { bonus, collect } = useRandomBonusSpawn();
 
   const [lastLoot, setLastLoot] = useState<LootItem | undefined>(undefined);
   const [filter, setFilter] = useState<FilterType>("ALL");
@@ -44,6 +54,11 @@ function App() {
   const handleLoot = (loot: LootItem) => {
     spendPointAndAddItem(loot);
     setLastLoot(loot);
+  };
+
+  const handleBonusCollect = () => {
+    const gained = collect();
+    addBonusActionPoint(gained);
   };
 
   useEffect(() => {
@@ -89,6 +104,7 @@ function App() {
         />
       </div>
       <CustomCursor />
+      {bonus && <FloatingBonus key={bonus.id} item={bonus} onCollect={handleBonusCollect} />}
     </>
   );
 }
