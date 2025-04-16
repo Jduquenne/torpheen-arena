@@ -10,7 +10,7 @@ import { useVersionCleanup } from "./hooks/useVersionCleanup";
 function App() {
   // Check localstorage data by version
   useVersionCleanup({
-    currentVersion: '1.1.0',
+    currentVersion: '1.1.1',
     obsoleteKeys: ['actionPointsSecure', 'inventorySecure'],
     renamedKeys: {
       'playerDataSecure': 'PLAYER_DATA_SECURE',
