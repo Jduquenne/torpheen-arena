@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { generateLoot } from "../lib/generateLoot";
 import { LootItem } from "../interfaces";
-import "../styles/DrawButton.css"; // 💅 nouveau fichier CSS
+import "../styles/DrawButton.css";
 
 interface Props {
-    points: number;
     onLoot: (item: LootItem) => void;
     hasActionPoint?: boolean;
 }
@@ -14,10 +13,11 @@ export function DrawButton({ onLoot, hasActionPoint = true }: Props) {
 
     const handleClick = () => {
         if (!hasActionPoint || cooldown) return;
+
         const loot = generateLoot();
         onLoot(loot);
         setCooldown(true);
-        setTimeout(() => setCooldown(false), 1000);
+        setTimeout(() => setCooldown(false), 500);
     };
 
     return (

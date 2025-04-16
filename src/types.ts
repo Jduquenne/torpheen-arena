@@ -8,4 +8,11 @@ export enum Rarity {
   RELIC = "RELIC",
 }
 
+export enum BonusRarity {
+  SMALL = "SMALL",
+  MEDIUM = "MEDIUM",
+  BIG = "BIG",
+  AWESOME = "AWESOME",
+}
+
 export type FilterType = Rarity | "ALL";

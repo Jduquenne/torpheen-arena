@@ -1,4 +1,4 @@
-import { Rarity } from "./types";
+import { BonusRarity, Rarity } from "./types";
 
 export interface LootItem {
   id: string;
@@ -11,4 +11,21 @@ export interface LootItem {
 export interface InventoryLootItem {
   loot: LootItem;
   count: number;
+}
+
+export interface BonusItem {
+  id: string;
+  rarity: BonusRarity;
+  image: string;
+  points: number;
+  animationClass?: string;
+  x: number;
+  y: number;
+}
+
+export interface BonusItemEntry {
+  rarity: BonusRarity;
+  chance: number;
+  points: number;
+  image: string;
 }
