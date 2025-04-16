@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { usePlayerData } from "./hooks/usePlayerData";
 import { useRandomBonusSpawn } from "./hooks/useRandomLootSpawn";
-
 import { LootItem } from "./interfaces";
 import { FilterType } from "./types";
 import { InventoryGrid, HeaderBar, InventoryPagination, CustomCursor, FloatingBonus } from "./components";

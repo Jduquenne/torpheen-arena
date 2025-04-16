@@ -1,9 +1,11 @@
+// src/hooks/usePlayerData.ts
 import { useEffect, useState } from "react";
 import { simpleHash } from "../lib/hash";
 import { xorEncrypt, xorDecrypt } from "../lib/crypto";
 import { InventoryLootItem, LootItem } from "../interfaces";
+import { initDB, getItem, setItem } from "../utils/useIndexedDB";
 
-const STORAGE_KEY = "PLAYER_DATA_SECRURE";
+const STORAGE_KEY = "PLAYER_DATA_SECURE";
 const SECRET = import.meta.env.VITE_ACTION_SECRET;
 const CRYPTO_KEY = import.meta.env.VITE_ACTION_KEY;
 const MAX_POINTS = 20;
@@ -20,29 +22,38 @@ export function usePlayerData() {
   const [data, setData] = useState<PlayerData | null>(null);
   const [locked, setLocked] = useState(false);
 
-  const save = (state: PlayerData) => {
+  const save = async (state: PlayerData) => {
     const { actionPoints, inventory, day } = state;
     const payload = { actionPoints, inventory, day };
-
     const checksum = simpleHash(SECRET + JSON.stringify(payload));
     const encrypted = xorEncrypt(
       JSON.stringify({ ...payload, checksum }),
       CRYPTO_KEY
     );
-    localStorage.setItem(STORAGE_KEY, encrypted);
+
+    await setItem(STORAGE_KEY, encrypted);
   };
 
-  const load = (): PlayerData | null => {
-    const raw = localStorage.getItem(STORAGE_KEY);
+  const load = async (): Promise<PlayerData | null> => {
     const today = getTodayKey();
+    // ✅ Migration automatique une seule fois
+    if (localStorage.getItem("PLAYER_DATA_MIGRATED") !== "1") {
+      const legacy = localStorage.getItem(STORAGE_KEY);
+      if (legacy) {
+        await setItem(STORAGE_KEY, legacy); // écrit dans IndexedDB
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.setItem("PLAYER_DATA_MIGRATED", "1");
+      }
+    }
 
+    const raw = (await getItem<string>(STORAGE_KEY)) ?? null;
     if (!raw) {
       const fresh: PlayerData = {
         actionPoints: MAX_POINTS,
         inventory: [],
         day: today,
       };
-      save(fresh);
+      await save(fresh);
       return fresh;
     }
 
@@ -61,7 +72,7 @@ export function usePlayerData() {
           inventory,
           day: today,
         };
-        save(resetDay);
+        await save(resetDay);
         return resetDay;
       }
       return { actionPoints, inventory, day };
@@ -71,13 +82,20 @@ export function usePlayerData() {
   };
 
   useEffect(() => {
-    const player = load();
-    if (!player) {
-      setLocked(true);
-    } else {
-      setData(player);
-    }
+    initDB();
+    load().then((player) => {
+      if (!player) {
+        setLocked(true);
+      } else {
+        setData(player);
+      }
+    });
   }, []);
+
+  const update = async (updated: PlayerData) => {
+    setData(updated);
+    await save(updated);
+  };
 
   const addOneActionPoint = () => {
     if (!data || locked) return;
@@ -85,8 +103,7 @@ export function usePlayerData() {
       ...data,
       actionPoints: Math.min(data.actionPoints + 1, MAX_POINTS),
     };
-    setData(updated);
-    save(updated);
+    update(updated);
   };
 
   const addBonusActionPoint = (point: number) => {
@@ -95,8 +112,7 @@ export function usePlayerData() {
       ...data,
       actionPoints: Math.min(data.actionPoints + point, MAX_POINTS),
     };
-    setData(updated);
-    save(updated);
+    update(updated);
   };
 
   const hasActionPoints = !!data && data.actionPoints > 0;
@@ -122,8 +138,7 @@ export function usePlayerData() {
       inventory: updatedInventory,
     };
 
-    save(updated);
-    setData(updated);
+    update(updated);
     return true;
   };
 
@@ -133,8 +148,7 @@ export function usePlayerData() {
       ...data,
       actionPoints: MAX_POINTS,
     };
-    setData(updated);
-    save(updated);
+    update(updated);
   };
 
   const resetInventory = () => {
@@ -143,8 +157,7 @@ export function usePlayerData() {
       ...data,
       inventory: [],
     };
-    setData(updated);
-    save(updated);
+    update(updated);
   };
 
   return {
