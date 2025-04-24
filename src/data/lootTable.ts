@@ -1490,8 +1490,8 @@ export const lootTable: LootItem[] = [
     id: "hammers_053",
     nameKey: "hammer.dawnhammer",
     image: "./assets/weapons/hammers/053.webp",
-    rarity: Rarity.COMMON,
-    chance: 43.25,
+    rarity: Rarity.RELIC,
+    chance: 0.05,
   },
   {
     id: "hammers_054",
@@ -1964,7 +1964,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_009",
-    nameKey: "stave.shadowspire",
+    nameKey: "stave.shadowcane",
     image: "./assets/weapons/staves/009.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -1992,14 +1992,14 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_013",
-    nameKey: "stave.lightspire",
+    nameKey: "stave.lightcane",
     image: "./assets/weapons/staves/013.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
   },
   {
     id: "staves_014",
-    nameKey: "stave.bloodspire",
+    nameKey: "stave.bloodcane",
     image: "./assets/weapons/staves/014.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2076,7 +2076,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_025",
-    nameKey: "stave.whisperspire",
+    nameKey: "stave.whispercane",
     image: "./assets/weapons/staves/025.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2104,7 +2104,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_029",
-    nameKey: "stave.voidspire",
+    nameKey: "stave.voidcane",
     image: "./assets/weapons/staves/029.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2153,7 +2153,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_036",
-    nameKey: "stave.soulspire",
+    nameKey: "stave.soulcane",
     image: "./assets/weapons/staves/036.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2167,14 +2167,14 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_038",
-    nameKey: "stave.moonspire",
+    nameKey: "stave.mooncane",
     image: "./assets/weapons/staves/038.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
   },
   {
     id: "staves_039",
-    nameKey: "stave.stormspire",
+    nameKey: "stave.stormcane",
     image: "./assets/weapons/staves/039.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2223,7 +2223,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_046",
-    nameKey: "stave.frostspire",
+    nameKey: "stave.frostcane",
     image: "./assets/weapons/staves/046.webp",
     rarity: Rarity.RARE,
     chance: 15,
@@ -2244,7 +2244,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_049",
-    nameKey: "stave.mistspire",
+    nameKey: "stave.mistcane",
     image: "./assets/weapons/staves/049.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2258,7 +2258,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_051",
-    nameKey: "stave.sunspire",
+    nameKey: "stave.suncane",
     image: "./assets/weapons/staves/051.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
@@ -2307,7 +2307,7 @@ export const lootTable: LootItem[] = [
   },
   {
     id: "staves_058",
-    nameKey: "stave.ghostspire",
+    nameKey: "stave.ghostcane",
     image: "./assets/weapons/staves/058.webp",
     rarity: Rarity.COMMON,
     chance: 43.25,
