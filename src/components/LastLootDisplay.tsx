@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LootItem } from "../interfaces";
-import { rarityColor } from "./InventoryItemCard";
+import { rarityColor } from "./InventoryGameCard";
+
 import "../styles/LastLootDisplay.css";
 import { useTranslation } from "react-i18next";
 

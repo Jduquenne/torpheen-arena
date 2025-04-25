@@ -1,12 +1,20 @@
+import { useEffect } from 'react';
+import { useSound } from '../context/SoundContext';
 import { BonusItem } from '../interfaces';
 import '../styles/FloatingBonus.css';
 
-interface FloartingBonusProps {
+interface FloatingBonusProps {
     item: BonusItem;
     onCollect: (points: number) => void;
 }
 
-export const FloatingBonus = ({ item, onCollect }: FloartingBonusProps) => {
+export const FloatingBonus = ({ item, onCollect }: FloatingBonusProps) => {
+    const { play } = useSound()
+
+    useEffect(() => {
+        play('bonus')
+    }, [])
+
     const handleClick = () => {
         onCollect(item.points);
     };
