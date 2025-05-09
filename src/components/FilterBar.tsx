@@ -2,6 +2,7 @@ import { InventoryLootItem } from "../interfaces";
 import { FilterType, Rarity } from "../types";
 import "../styles/FilterBar.css"
 import { useSound } from "../context/SoundContext";
+import { useTranslation } from "react-i18next";
 
 interface FilterBarProps {
     filter: FilterType;
@@ -9,19 +10,20 @@ interface FilterBarProps {
     inventory: InventoryLootItem[];
 }
 
-const FILTER_OPTIONS: { label: string; value: FilterType }[] = [
-    { label: "Tous", value: "ALL" },
-    { label: "Commun", value: Rarity.COMMON },
-    { label: "Inhabituel", value: Rarity.UNCOMMON },
-    { label: "Rare", value: Rarity.RARE },
-    { label: "Mythique", value: Rarity.MYTHIC },
-    { label: "Légendaire", value: Rarity.LEGENDARY },
-    { label: "Épique", value: Rarity.EPIC },
-    { label: "Relique", value: Rarity.RELIC },
-];
-
 export function FilterBar({ filter, setFilter, inventory }: FilterBarProps) {
     const { play } = useSound()
+    const { t } = useTranslation()
+    const FILTER_OPTIONS: { label: string; value: FilterType }[] = [
+        { label: t('filter.all'), value: "ALL" },
+        { label: t('filter.common'), value: Rarity.COMMON },
+        { label: t('filter.uncommon'), value: Rarity.UNCOMMON },
+        { label: t('filter.rare'), value: Rarity.RARE },
+        { label: t('filter.mythic'), value: Rarity.MYTHIC },
+        { label: t('filter.legendary'), value: Rarity.LEGENDARY },
+        { label: t('filter.epic'), value: Rarity.EPIC },
+        { label: t('filter.relic'), value: Rarity.RELIC },
+    ];
+
     const getCount = (type: FilterType) => {
         if (type === "ALL") return inventory.length;
         return inventory.filter((item) => item.loot.rarity === type).length;

@@ -1,4 +1,22 @@
 {
+  "filter": {
+    "all": "All",
+    "common": "Common",
+    "uncommon": "Uncommon",
+    "rare": "Rare",
+    "mythic": "Mythic",
+    "legendary": "Legendary",
+    "epic": "Epic",
+    "relic": "Relic"
+  },
+  "global": {
+    "my_inventory": "My inventory",
+    "spin_the_roulette": "Spin the roulette",
+    "back_tomorrow": "Back tomorrow",
+    "previous": "Previous",
+    "next": "Next",
+    "page": "Page"
+  },
   "axe": {
     "hellcleaver": "Hellcleaver",
     "stormbreaker": "Stormbreaker",
@@ -29,6 +47,7 @@
     "bloodcleaver": "Bloodcleaver",
     "gorecleaver": "Gorecleaver",
     "ghostreaver": "Ghostreaver",
+    "blazereaver": "BlazeReaver",
     "stormfang": "Stormfang",
     "nightcleaver": "Nightcleaver",
     "soulaxe": "Soulaxe",

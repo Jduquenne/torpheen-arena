@@ -4,12 +4,34 @@ import { rarityColor } from "./InventoryGameCard";
 
 import "../styles/LastLootDisplay.css";
 import { useTranslation } from "react-i18next";
+import { Rarity } from "../types";
 
 export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
     const { t } = useTranslation();
 
     const [visible, setVisible] = useState(false);
     const [internalLoot, setInternalLoot] = useState<LootItem | null>(null);
+
+    const getRarityLabelByLootRarity = (lootRarity: Rarity) => {
+        switch (lootRarity) {
+            case Rarity.COMMON:
+                return t('filter.common')
+            case Rarity.UNCOMMON:
+                return t('filter.uncommon')
+            case Rarity.RARE:
+                return t('filter.rare')
+            case Rarity.EPIC:
+                return t('filter.epic')
+            case Rarity.MYTHIC:
+                return t('filter.mythic')
+            case Rarity.LEGENDARY:
+                return t('filter.common')
+            case Rarity.RELIC:
+                return t('filter.common')
+            default:
+                break
+        }
+    }
 
     useEffect(() => {
         if (loot) {
@@ -43,7 +65,7 @@ export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
                         className="last-loot-rarity"
                         style={{ color: rarityColor(internalLoot.rarity) }}
                     >
-                        {internalLoot.rarity}
+                        {getRarityLabelByLootRarity(internalLoot.rarity)}
                     </div>
                 </div>
             </div>
