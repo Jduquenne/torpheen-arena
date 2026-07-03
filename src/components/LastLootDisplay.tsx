@@ -5,9 +5,11 @@ import { rarityColor } from "./InventoryGameCard";
 import "../styles/LastLootDisplay.css";
 import { useTranslation } from "react-i18next";
 import { Rarity } from "../types";
+import { useGame } from "../context/GameContext";
 
-export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
+export function LastLootDisplay() {
     const { t } = useTranslation();
+    const { lastLoot: loot } = useGame();
 
     const [visible, setVisible] = useState(false);
     const [internalLoot, setInternalLoot] = useState<LootItem | null>(null);
@@ -25,9 +27,9 @@ export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
             case Rarity.MYTHIC:
                 return t('filter.mythic')
             case Rarity.LEGENDARY:
-                return t('filter.common')
+                return t('filter.legendary')
             case Rarity.RELIC:
-                return t('filter.common')
+                return t('filter.relic')
             default:
                 break
         }

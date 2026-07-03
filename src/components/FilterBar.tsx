@@ -1,18 +1,13 @@
-import { InventoryLootItem } from "../interfaces";
 import { FilterType, Rarity } from "../types";
 import "../styles/FilterBar.css"
 import { useSound } from "../context/SoundContext";
+import { useGame } from "../context/GameContext";
 import { useTranslation } from "react-i18next";
 
-interface FilterBarProps {
-    filter: FilterType;
-    setFilter: (r: FilterType) => void;
-    inventory: InventoryLootItem[];
-}
-
-export function FilterBar({ filter, setFilter, inventory }: FilterBarProps) {
+export function FilterBar() {
     const { play } = useSound()
     const { t } = useTranslation()
+    const { filter, setFilter, inventory } = useGame();
     const FILTER_OPTIONS: { label: string; value: FilterType }[] = [
         { label: t('filter.all'), value: "ALL" },
         { label: t('filter.common'), value: Rarity.COMMON },

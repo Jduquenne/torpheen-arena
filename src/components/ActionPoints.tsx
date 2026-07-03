@@ -1,9 +1,8 @@
 import "../styles/ActionPoints.css";
-interface Props {
-    actionPoints: number;
-}
+import { useGame } from "../context/GameContext";
 
-export function ActionPoints({ actionPoints }: Props) {
+export function ActionPoints() {
+    const { actionPoints } = useGame();
     const getClassByPoints = () => {
         if (actionPoints === 0) return "empty";
         if (actionPoints <= 3) return "low";

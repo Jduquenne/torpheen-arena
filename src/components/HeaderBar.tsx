@@ -1,39 +1,13 @@
-import { InventoryLootItem, LootItem } from "../interfaces";
-import { FilterType } from "../types";
+import "../styles/HeaderBar.css";
 import { DrawButton } from "./DrawButton";
 import { FilterBar } from "./FilterBar";
-import "../styles/HeaderBar.css";
 import { LastLootDisplay } from "./LastLootDisplay";
 import { DevTools } from "./DevTools";
 import { ActionPoints } from "./ActionPoints";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 
-interface HearderBarProps {
-    filter: FilterType;
-    inventory: InventoryLootItem[];
-    actionPoints: number;
-    hasActionPoint: boolean;
-    lastLoot?: LootItem;
-    setFilter: (r: FilterType) => void;
-    onLoot: (item: LootItem) => void;
-    addActionPoint: () => void;
-    resetActionPoints: () => void;
-    resetInventory: () => void;
-}
-
-export function HeaderBar({
-    filter,
-    inventory,
-    actionPoints,
-    hasActionPoint,
-    lastLoot,
-    setFilter,
-    onLoot,
-    addActionPoint,
-    resetActionPoints,
-    resetInventory
-}: HearderBarProps) {
+export function HeaderBar() {
     const { t } = useTranslation()
     return (
         <header className="header-bar">
@@ -47,25 +21,16 @@ export function HeaderBar({
 
 
                 <div className="main-actions">
-                    <ActionPoints actionPoints={actionPoints} />
+                    <ActionPoints />
 
-                    <DrawButton
-                        onLoot={onLoot}
-                        hasActionPoint={hasActionPoint}
-                    />
+                    <DrawButton />
 
-                    {import.meta.env.VITE_DEV_MODE === "true" && (
-                        <DevTools onResetPA={resetActionPoints} onResetInventory={resetInventory} onAddPA={addActionPoint} />
-                    )}
+                    {import.meta.env.VITE_DEV_MODE === "true" && <DevTools />}
 
-                    {lastLoot && <LastLootDisplay loot={lastLoot} />}
+                    <LastLootDisplay />
                 </div>
 
-                <FilterBar
-                    filter={filter}
-                    setFilter={setFilter}
-                    inventory={inventory}
-                />
+                <FilterBar />
             </div>
         </header>
     );

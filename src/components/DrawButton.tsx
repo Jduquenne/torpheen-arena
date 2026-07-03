@@ -1,20 +1,16 @@
 import { useState } from "react";
 import { generateLoot } from "../lib/generateLoot";
-import { LootItem } from "../interfaces";
 import "../styles/DrawButton.css";
 import { useTranslation } from "react-i18next";
+import { useGame } from "../context/GameContext";
 
-interface Props {
-    onLoot: (item: LootItem) => void;
-    hasActionPoint?: boolean;
-}
-
-export function DrawButton({ onLoot, hasActionPoint = true }: Props) {
+export function DrawButton() {
     const { t } = useTranslation()
+    const { onLoot, hasActionPoints } = useGame();
     const [cooldown, setCooldown] = useState(false);
 
     const handleClick = () => {
-        if (!hasActionPoint || cooldown) return;
+        if (!hasActionPoints || cooldown) return;
 
         const loot = generateLoot();
         onLoot(loot);
@@ -25,10 +21,10 @@ export function DrawButton({ onLoot, hasActionPoint = true }: Props) {
     return (
         <button
             onClick={handleClick}
-            disabled={!hasActionPoint || cooldown}
+            disabled={!hasActionPoints || cooldown}
             className="draw-button"
         >
-            {hasActionPoint ? (t('global.spin_the_roulette')) : (t('global.back_tomorrow'))}
+            {hasActionPoints ? (t('global.spin_the_roulette')) : (t('global.back_tomorrow'))}
         </button>
     );
 }

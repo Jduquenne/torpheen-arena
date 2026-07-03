@@ -1,19 +1,15 @@
 import "../styles/DevTools.css";
+import { useGame } from "../context/GameContext";
 
-interface Props {
-    onResetPA: () => void;
-    onResetInventory: () => void;
-    onAddPA: () => void;
-}
-
-export function DevTools({ onResetPA, onResetInventory, onAddPA }: Props) {
+export function DevTools() {
+    const { resetActionPoints, resetInventory, addOneActionPoint } = useGame();
     return (
         <div className="devtools">
             <details>
                 <summary>🛠 DevTools</summary>
-                <button onClick={onResetPA}>🔄 Reset PA</button>
-                <button onClick={onResetInventory}>🧹 Reset Inventaire</button>
-                <button onClick={onAddPA}>➕ +1 Point d'action</button>
+                <button onClick={resetActionPoints}>🔄 Reset PA</button>
+                <button onClick={resetInventory}>🧹 Reset Inventaire</button>
+                <button onClick={addOneActionPoint}>➕ +1 Point d'action</button>
             </details>
         </div>
     );
