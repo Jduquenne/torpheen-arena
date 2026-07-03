@@ -29,8 +29,7 @@ export function useRandomBonusSpawn(intervalMin = 30, intervalMax = 120) {
         side === "left"
           ? getRandomFromRange(40, 100)
           : getRandomFromRange(0, 40);
-      let sideClass = "";
-      sideClass = side === "left" ? "roll-in-left" : "roll-in-right";
+      const sideClass = side === "left" ? "roll-in-left" : "roll-in-right";
       const x =
         side === "left" ? offset : window.innerWidth - iconSize - offset;
 

@@ -35,6 +35,7 @@ export function LastLootDisplay({ loot }: { loot: LootItem | null }) {
 
     useEffect(() => {
         if (loot) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect -- drives a CSS transition (mount hidden, then reveal) via setTimeout, not derivable from render
             setVisible(false);
             setInternalLoot(loot);
             const appearTimeout = setTimeout(() => setVisible(true), 100);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { usePlayerData } from "./hooks/usePlayerData";
 import { useRandomBonusSpawn } from "./hooks/useRandomBonusSpawn";
@@ -42,14 +42,16 @@ function App() {
     : inventory.filter((item) => item.loot.rarity === filter)
   ).slice().reverse();
 
-  const paginatedInventory = filteredInventory.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
-
   const totalPages = Math.max(
     1,
     Math.ceil(filteredInventory.length / ITEMS_PER_PAGE)
+  );
+
+  const clampedPage = Math.min(currentPage, totalPages);
+
+  const paginatedInventory = filteredInventory.slice(
+    (clampedPage - 1) * ITEMS_PER_PAGE,
+    clampedPage * ITEMS_PER_PAGE
   );
 
   const handleLoot = (loot: LootItem) => {
@@ -61,12 +63,6 @@ function App() {
     const gained = collect();
     addBonusActionPoint(gained);
   };
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(1);
-    }
-  }, [filter]);
 
   return (
     <>
@@ -99,7 +95,7 @@ function App() {
         )}
         <InventoryGrid items={paginatedInventory} />
         <InventoryPagination
-          currentPage={currentPage}
+          currentPage={clampedPage}
           totalPages={totalPages}
           onChange={(page) => setCurrentPage(page)}
         />
