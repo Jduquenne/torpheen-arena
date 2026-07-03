@@ -2,6 +2,7 @@ import { useState } from "react";
 import { generateLoot } from "../lib/generateLoot";
 import { LootItem } from "../interfaces";
 import "../styles/DrawButton.css";
+import { useTranslation } from "react-i18next";
 
 interface Props {
     onLoot: (item: LootItem) => void;
@@ -9,6 +10,7 @@ interface Props {
 }
 
 export function DrawButton({ onLoot, hasActionPoint = true }: Props) {
+    const { t } = useTranslation()
     const [cooldown, setCooldown] = useState(false);
 
     const handleClick = () => {
@@ -26,7 +28,7 @@ export function DrawButton({ onLoot, hasActionPoint = true }: Props) {
             disabled={!hasActionPoint || cooldown}
             className="draw-button"
         >
-            {hasActionPoint ? ("Tourne la roulette !") : ("Reviens demain !")}
+            {hasActionPoint ? (t('global.spin_the_roulette')) : (t('global.back_tomorrow'))}
         </button>
     );
 }

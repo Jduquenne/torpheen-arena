@@ -1,4 +1,22 @@
 {
+  "filter": {
+    "all": "Tous",
+    "common": "Commun",
+    "uncommon": "Inhabituel",
+    "rare": "Rare",
+    "mythic": "Mythique",
+    "legendary": "Légendaire",
+    "epic": "Épique",
+    "relic": "Relique"
+  },
+  "global": {
+    "my_inventory": "Mon inventaire",
+    "spin_the_roulette": "Tourne la roulette",
+    "back_tomorrow": "Reviens demain",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "page": "Page"
+  },
   "axe": {
     "hellcleaver": "Couperet Infernal",
     "stormbreaker": "Briseur de la Tempête",
@@ -29,6 +47,7 @@
     "bloodcleaver": "Couperet Sanglant",
     "gorecleaver": "Couperet Sanglant",
     "ghostreaver": "Pilleur Fantomatique",
+    "blazereaver": "Pilleuse flambée",
     "stormfang": "Croc de la Tempête",
     "nightcleaver": "Couperet Nocturne",
     "soulaxe": "Hache d'Âme",
