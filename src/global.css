@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&display=swap');
 @import "tailwindcss";
 
 /* RESET minimal */
@@ -38,6 +39,7 @@
     --accent-yellow: #ffcc00;
 
     /* Typography */
+    --font-display: 'Cinzel', 'Segoe UI', Georgia, serif;
     font-family: 'Segoe UI', sans-serif, system-ui, Avenir, Helvetica, Arial;
     line-height: 1.5;
     font-weight: 400;
@@ -86,6 +88,8 @@ body::before {
 
 /* ROOT CONTAINER */
 #root {
+    width: 100%;
+    min-width: 0;
     max-width: 1280px;
     margin: 0 auto;
     padding: 1rem;
@@ -93,11 +97,6 @@ body::before {
 }
 
 /* TYPOGRAPHY */
-h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-}
-
 a {
     font-weight: 500;
     color: #646cff;

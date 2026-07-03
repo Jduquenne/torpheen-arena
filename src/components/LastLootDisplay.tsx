@@ -4,7 +4,7 @@ import { rarityColor } from "./InventoryGameCard";
 
 import "../styles/LastLootDisplay.css";
 import { useTranslation } from "react-i18next";
-import { Rarity } from "../types";
+import { rarityTranslationKey } from "../lib/rarityLabel";
 import { useGame } from "../context/GameContext";
 
 export function LastLootDisplay() {
@@ -13,27 +13,6 @@ export function LastLootDisplay() {
 
     const [visible, setVisible] = useState(false);
     const [internalLoot, setInternalLoot] = useState<LootItem | null>(null);
-
-    const getRarityLabelByLootRarity = (lootRarity: Rarity) => {
-        switch (lootRarity) {
-            case Rarity.COMMON:
-                return t('filter.common')
-            case Rarity.UNCOMMON:
-                return t('filter.uncommon')
-            case Rarity.RARE:
-                return t('filter.rare')
-            case Rarity.EPIC:
-                return t('filter.epic')
-            case Rarity.MYTHIC:
-                return t('filter.mythic')
-            case Rarity.LEGENDARY:
-                return t('filter.legendary')
-            case Rarity.RELIC:
-                return t('filter.relic')
-            default:
-                break
-        }
-    }
 
     useEffect(() => {
         if (loot) {
@@ -55,20 +34,25 @@ export function LastLootDisplay() {
 
     if (!internalLoot) return null;
 
+    const accentColor = rarityColor(internalLoot.rarity);
+
     return (
-        <div className={`last-loot-card ${visible ? "show" : ""}`}>
-            <div className="last-loot-glow" style={{ background: rarityColor(internalLoot.rarity) }} />
+        <div
+            className={`last-loot-card ${visible ? "show" : ""}`}
+            style={{ borderColor: accentColor, boxShadow: `0 4px 20px rgba(0, 0, 0, 0.5), 0 0 16px -3px ${accentColor}` }}
+        >
+            <div className="last-loot-glow" style={{ background: accentColor }} />
             <div className="last-loot-content">
-                <div className="last-loot-image">
-                    <img src={internalLoot.image} alt="weapon" />
+                <div className="last-loot-image" style={{ borderColor: accentColor }}>
+                    <img src={internalLoot.image} alt={t(internalLoot.nameKey)} />
                 </div>
                 <div className="last-loot-details">
                     <div className="last-loot-name">{t(internalLoot.nameKey)}</div>
                     <div
                         className="last-loot-rarity"
-                        style={{ color: rarityColor(internalLoot.rarity) }}
+                        style={{ color: accentColor }}
                     >
-                        {getRarityLabelByLootRarity(internalLoot.rarity)}
+                        {t(rarityTranslationKey(internalLoot.rarity))}
                     </div>
                 </div>
             </div>

@@ -37,6 +37,7 @@ export function FilterBar() {
                     className={`filter-btn ${filter === opt.value ? "active" : ""} rarity-${opt.value.toString().toLowerCase()}`}
                     onClick={() => onClickActions(opt.value,)}
                 >
+                    <span className="filter-btn-dot" aria-hidden="true" />
                     <span className="label">{opt.label}</span>
                     <span className="badge">{getCount(opt.value)}</span>
                 </button>

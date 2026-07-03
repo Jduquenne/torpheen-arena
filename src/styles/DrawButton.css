@@ -1,25 +1,41 @@
 .draw-button {
-    padding: 1rem 2rem;
-    font-size: 1.2rem;
+    padding: 0.85rem 1.75rem;
+    font-size: 1.05rem;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
     cursor: pointer;
-    border: none;
-    border-radius: 0.5rem;
-    background-color: var(--bg-button-draw);
-    color: black;
-    font-weight: bold;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 0 var(--bg-button-draw-box);
+    border: 2px solid #a67c00;
+    border-radius: 0.6rem;
+    background: linear-gradient(180deg, #ffe680 0%, var(--bg-button-draw) 55%, #e6b800 100%);
+    color: #2a1d00;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+    box-shadow: 0 4px 0 var(--bg-button-draw-box), 0 8px 16px rgba(0, 0, 0, 0.35);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+}
+
+@media (min-width: 640px) {
+    .draw-button {
+        padding: 1rem 2.25rem;
+        font-size: 1.2rem;
+    }
 }
 
 .draw-button:hover:not(:disabled) {
-    background-color: var(--bg-button-draw-hover);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(2px);
+    background: linear-gradient(180deg, #fff1a8 0%, #ffd633 55%, #f2c200 100%);
+    box-shadow: 0 4px 0 var(--bg-button-draw-box), 0 10px 22px rgba(255, 204, 0, 0.35);
+}
+
+.draw-button:active:not(:disabled) {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 var(--bg-button-draw-box), 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 .draw-button:disabled {
-    background-color: var(--bg-button-draw-disabled);
+    background: var(--bg-button-draw-disabled);
+    border-color: #777;
     color: #555;
+    text-shadow: none;
     cursor: not-allowed;
-    box-shadow: none;
+    box-shadow: 0 4px 0 #6b6b6b;
 }

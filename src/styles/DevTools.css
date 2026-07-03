@@ -12,6 +12,15 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
+@media (max-width: 639px) {
+    /* the mobile action-dock already occupies the bottom bar; let DevTools
+       flow inside it instead of floating independently on top of it */
+    .devtools {
+        position: static;
+        margin-top: 0.4rem;
+    }
+}
+
 .devtools summary {
     cursor: pointer;
     font-weight: bold;

@@ -4,7 +4,7 @@ import { useGame } from "./context/GameContext";
 import { useRandomBonusSpawn } from "./hooks/useRandomBonusSpawn";
 import { useVersionCleanup } from "./hooks/useVersionCleanup";
 
-import { InventoryGrid, HeaderBar, InventoryPagination, CustomCursor, FloatingBonus } from "./components";
+import { InventoryGrid, HeaderBar, InventoryPagination, CustomCursor, FloatingBonus, FilterBar } from "./components";
 
 function App() {
   // Check localstorage data by version
@@ -45,17 +45,22 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col justify-start items-center font-sans text-center top-0">
+      <div className="min-h-screen w-full min-w-0 flex flex-col justify-start items-center font-sans text-center">
         <HeaderBar />
-        {locked && (
-          <div className="warning">⚠️ Triche détectée : vous ne pouvez plus jouer aujourd'hui.</div>
-        )}
-        <InventoryGrid items={paginatedInventory} />
-        <InventoryPagination
-          currentPage={clampedPage}
-          totalPages={totalPages}
-          onChange={(page) => setCurrentPage(page)}
-        />
+        <div className="w-full min-w-0 max-w-[1400px] flex flex-col items-center px-3 pb-52 sm:px-4 sm:pb-4">
+          <FilterBar />
+          {locked && (
+            <div className="my-3 w-full max-w-xl rounded-lg border border-red-700 bg-red-900/80 px-4 py-2 text-sm text-red-100 sm:text-base">
+              ⚠️ Triche détectée : vous ne pouvez plus jouer aujourd'hui.
+            </div>
+          )}
+          <InventoryGrid items={paginatedInventory} />
+          <InventoryPagination
+            currentPage={clampedPage}
+            totalPages={totalPages}
+            onChange={(page) => setCurrentPage(page)}
+          />
+        </div>
       </div>
       <CustomCursor />
       {bonus && <FloatingBonus key={bonus.id} item={bonus} onCollect={handleBonusCollect} />}

@@ -2,40 +2,44 @@ import { useTranslation } from 'react-i18next';
 import { InventoryLootItem } from '../interfaces';
 import '../styles/InventoryGameCard.css';
 import { Rarity } from '../types';
+import { rarityTranslationKey } from '../lib/rarityLabel';
 
 export const rarityColor = (rarity: Rarity): string => {
     switch (rarity) {
         case Rarity.COMMON:
-            return "#9ca3af";
+            return "var(--rarity-common)";
         case Rarity.UNCOMMON:
-            return "#59c173";
+            return "var(--rarity-uncommon)";
         case Rarity.RARE:
-            return "#3b82f6";
+            return "var(--rarity-rare)";
         case Rarity.MYTHIC:
-            return "#d946ef";
+            return "var(--rarity-mythic)";
         case Rarity.LEGENDARY:
-            return "#f97316";
+            return "var(--rarity-legendary)";
         case Rarity.EPIC:
-            return "#8b5cf6";
+            return "var(--rarity-epic)";
         case Rarity.RELIC:
-            return "#ffd700";
+            return "var(--rarity-relic)";
         default:
-            return "#000";
+            return "var(--rarity-common)";
     }
 };
 
 export function InventoryGameCard({ item }: { item: InventoryLootItem }) {
     const { t } = useTranslation();
+    const rarityClass = `inventory-rarity--${item.loot.rarity.toLowerCase()}`;
 
     return (
-        <div className="card">
+        <div className={`card ${rarityClass}`}>
             {item.count > 1 && (
-                <div className={`item-count inventory-rarity--${item.loot.rarity.toLowerCase()}`}>{item.count}</div>
+                <div className="item-count">{item.count}</div>
             )}
-            <img src={item.loot.image} className="artwork" />
+            <div className="artwork-frame">
+                <img src={item.loot.image} className="artwork" alt={t(item.loot.nameKey)} />
+            </div>
             <div className="name-banner">{t(item.loot.nameKey)}</div>
             <div className="empty-slot">
-                <span className={`rarity inventory-rarity--${item.loot.rarity.toLowerCase()}`}>{item.loot.rarity}</span>
+                <span className={`rarity ${rarityClass}`}>{t(rarityTranslationKey(item.loot.rarity))}</span>
             </div>
         </div>
     );

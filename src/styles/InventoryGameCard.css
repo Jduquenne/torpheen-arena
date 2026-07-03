@@ -1,176 +1,170 @@
 .card {
-    width: 240px;
-    border: 4px solid #cf912e;
-    border-radius: 16px;
-    background: linear-gradient(to bottom, #256142, #1f4730);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--border-card);
+    border-radius: 14px;
+    background: linear-gradient(165deg, #1b2a22 0%, #101a15 100%);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
     position: relative;
+    overflow: hidden;
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: transform 0.4s ease;
-    will-change: transform;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
-    animation: float 4s ease-in-out infinite;
-}
-
-@media (max-width: 585px) {
-    .card {
-        min-width: 90%;
-    }
-}
-
-@media (max-width: 915px) {
-    .card {
-        min-width: 90%;
-    }
-}
-
-@media (max-width: 1150px) {
-    .card {
-        min-width: 90%;
-    }
-}
-
-@keyframes float {
-
-    0% {
-        transform: translateY(0) rotate(0deg) scale(1);
-    }
-
-    10% {
-        transform: translateY(-3px) rotate(0.5deg) scale(1.01);
-    }
-
-    20% {
-        transform: translateY(-6px) rotate(-0.75deg) scale(1.015);
-    }
-
-    30% {
-        transform: translateY(-4px) rotate(1deg) scale(1.02);
-    }
-
-    40% {
-        transform: translateY(-7px) rotate(-1deg) scale(1.02);
-    }
-
-    50% {
-        transform: translateY(-8px) rotate(0.5deg) scale(1.025);
-    }
-
-    60% {
-        transform: translateY(-7px) rotate(-1deg) scale(1.02);
-    }
-
-    70% {
-        transform: translateY(-5px) rotate(1deg) scale(1.015);
-    }
-
-    80% {
-        transform: translateY(-3px) rotate(-0.5deg) scale(1.01);
-    }
-
-    90% {
-        transform: translateY(-2px) rotate(0.25deg) scale(1.005);
-    }
-
-    100% {
-        transform: translateY(0) rotate(0deg) scale(1);
-    }
+    transform: translateY(-4px);
 }
 
 .item-count {
     position: absolute;
-    top: -20px;
-    left: -20px;
-    background: #258edb;
-    border: 4px solid #004b80;
-    color: white;
-    border-radius: 35%;
-    width: 44px;
-    height: 44px;
+    top: 0.4rem;
+    right: 0.4rem;
+    z-index: 10;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 0.35rem;
+    border-radius: 999px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    font-size: 1.2rem;
-    z-index: 10;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    background: rgba(10, 12, 16, 0.85);
+    border: 2px solid var(--accent-yellow);
+    color: #fff2cc;
+    font-weight: 800;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.artwork-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.35) 75%);
 }
 
 .artwork {
+    display: block;
     width: 100%;
-    height: 240px;
-    object-fit: cover;
-    border-bottom: 4px solid #cf912e;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    height: 100%;
+    object-fit: contain;
+    padding: 10%;
+    box-sizing: border-box;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
+}
+
+.artwork-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 24px 4px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
 }
 
 .name-banner {
-    background: #b52b2b;
-    padding: 0.6rem 0;
-    font-size: 1.2rem;
-    font-weight: bold;
+    background: linear-gradient(180deg, #2a2016 0%, #1a140d 100%);
+    border-top: 2px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+    padding: 0.45rem 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
     text-align: center;
-    border-top: 4px solid #8f1e1e;
-    color: #fff2e5;
+    color: #f3d98b;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .empty-slot {
-    height: 50px;
-    background: #382818;
-    border-top: 4px solid #cf912e;
-    border-bottom-left-radius: 12px;
-    border-bottom-right-radius: 12px;
+    margin-top: auto;
+    padding: 0.45rem;
+    background: rgba(0, 0, 0, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem;
 }
 
 .rarity {
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: bold;
+    font-size: 0.62rem;
+    font-weight: 800;
     text-transform: uppercase;
-    color: white;
+    letter-spacing: 0.04em;
+    color: #0b0f14;
+    background: var(--rarity-common);
 }
 
-.inventory-rarity--common {
-    background-color: #aaa;
-    border: 4px solid #747474;
+/* Rarity accents: the card's frame carries the color, the pill confirms it in text.
+   Glow intensity scales up with rarity so value reads at a glance. */
+.card.inventory-rarity--common {
+    border-color: color-mix(in srgb, var(--rarity-common) 55%, var(--border-card));
 }
 
-.inventory-rarity--uncommon {
-    background-color: #59c173;
-    border: 4px solid #3e8750;
+.card.inventory-rarity--uncommon {
+    border-color: var(--rarity-uncommon);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 12px -3px var(--rarity-uncommon);
 }
 
-.inventory-rarity--rare {
-    background-color: #3b82f6;
-    border: 4px solid #316ccb;
+.card.inventory-rarity--rare {
+    border-color: var(--rarity-rare);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 14px -3px var(--rarity-rare);
 }
 
-.inventory-rarity--epic {
-    background-color: #8b5cf6;
-    border: 4px solid #734cce;
+.card.inventory-rarity--epic {
+    border-color: var(--rarity-epic);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 16px -2px var(--rarity-epic);
 }
 
-.inventory-rarity--mythic {
-    background-color: #d946ef;
-    border: 4px solid #af38c1;
+.card.inventory-rarity--mythic {
+    border-color: var(--rarity-mythic);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 18px -2px var(--rarity-mythic);
 }
 
-.inventory-rarity--legendary {
-    background-color: #f97316;
-    border: 4px solid #c1590f;
+.card.inventory-rarity--legendary {
+    border-color: var(--rarity-legendary);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 20px -2px var(--rarity-legendary);
 }
 
-.inventory-rarity--relic {
-    background-color: #ffd700;
-    border: 4px solid #bea101;
-    color: rgb(61, 61, 61);
+.card.inventory-rarity--relic {
+    border-color: var(--rarity-relic);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45), 0 0 24px 0px var(--rarity-relic);
+}
+
+.rarity.inventory-rarity--common {
+    background: var(--rarity-common);
+}
+
+.rarity.inventory-rarity--uncommon {
+    background: var(--rarity-uncommon);
+    color: #05170a;
+}
+
+.rarity.inventory-rarity--rare {
+    background: var(--rarity-rare);
+    color: #fff;
+}
+
+.rarity.inventory-rarity--epic {
+    background: var(--rarity-epic);
+    color: #fff;
+}
+
+.rarity.inventory-rarity--mythic {
+    background: var(--rarity-mythic);
+    color: #fff;
+}
+
+.rarity.inventory-rarity--legendary {
+    background: var(--rarity-legendary);
+    color: #1a0f00;
+}
+
+.rarity.inventory-rarity--relic {
+    background: var(--rarity-relic);
+    color: #1a1400;
 }

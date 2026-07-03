@@ -1,76 +1,149 @@
 .filter-bar {
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
     gap: 0.5rem;
-    margin-top: 2rem;
-    padding: 0.5rem;
-    background: #1f2937;
-    border-radius: 0.75rem;
-    box-shadow: inset 0 0 0 2px #2e3a4a;
+    width: 100%;
+    min-width: 0;
+    max-width: 1400px;
+    margin: 1.25rem auto;
+    padding: 0.6rem;
+    background: linear-gradient(160deg, #1b2531 0%, #131b24 100%);
+    border: 1px solid #2e3a4a;
+    border-radius: 0.85rem;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03), 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+    .filter-bar {
+        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+        gap: 0.6rem;
+        padding: 0.75rem;
+    }
 }
 
 .filter-btn {
     position: relative;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.85rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    background-color: var(--bg-button);
-    color: white;
-    z-index: 1;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 0.3rem;
+    min-width: 0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.6rem;
+    padding: 0.55rem 0.3rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: #cbd5e1;
+    cursor: pointer;
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.15;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+        transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-1px);
+}
+
+.filter-btn-dot {
+    width: 9px;
+    height: 9px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--text-muted);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
 }
 
 .filter-btn .label {
-    z-index: 1;
+    text-align: center;
 }
 
 .filter-btn .badge {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 2px 6px;
-    border-radius: 8px;
-    font-size: 0.7rem;
-    font-weight: normal;
-    z-index: 1;
+    font-size: 0.68rem;
+    font-weight: 800;
+    color: #fff;
+    opacity: 0.85;
 }
 
-/* Couleurs par rareté (exemples) */
-.filter-btn.rarity-common {
-    background-color: var(--rarity-common);
+.filter-btn.active {
+    background: rgba(255, 255, 255, 0.09);
+    color: #fff;
 }
 
-.filter-btn.rarity-uncommon {
-    background-color: var(--rarity-uncommon);
+/* Rarity accent: dot always shows the color; border + glow ring kick in when active */
+.filter-btn.rarity-all .filter-btn-dot {
+    background: var(--accent-yellow);
 }
 
-.filter-btn.rarity-rare {
-    background-color: var(--rarity-rare);
+.filter-btn.rarity-all.active {
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 0 1px var(--accent-yellow), 0 0 10px -2px var(--accent-yellow);
 }
 
-.filter-btn.rarity-epic {
-    background-color: var(--rarity-epic);
+.filter-btn.rarity-common .filter-btn-dot {
+    background: var(--rarity-common);
 }
 
-.filter-btn.rarity-mythic {
-    background-color: var(--rarity-mythic);
+.filter-btn.rarity-common.active {
+    border-color: var(--rarity-common);
+    box-shadow: 0 0 0 1px var(--rarity-common), 0 0 10px -2px var(--rarity-common);
 }
 
-.filter-btn.rarity-legendary {
-    background-color: var(--rarity-legendary);
+.filter-btn.rarity-uncommon .filter-btn-dot {
+    background: var(--rarity-uncommon);
 }
 
-.filter-btn.rarity-relic {
-    background-color: var(--rarity-relic);
-    color: black;
+.filter-btn.rarity-uncommon.active {
+    border-color: var(--rarity-uncommon);
+    box-shadow: 0 0 0 1px var(--rarity-uncommon), 0 0 10px -2px var(--rarity-uncommon);
 }
 
-.filter-btn.rarity-all {
-    background-color: var(--bg-button);
+.filter-btn.rarity-rare .filter-btn-dot {
+    background: var(--rarity-rare);
+}
+
+.filter-btn.rarity-rare.active {
+    border-color: var(--rarity-rare);
+    box-shadow: 0 0 0 1px var(--rarity-rare), 0 0 10px -2px var(--rarity-rare);
+}
+
+.filter-btn.rarity-epic .filter-btn-dot {
+    background: var(--rarity-epic);
+}
+
+.filter-btn.rarity-epic.active {
+    border-color: var(--rarity-epic);
+    box-shadow: 0 0 0 1px var(--rarity-epic), 0 0 10px -2px var(--rarity-epic);
+}
+
+.filter-btn.rarity-mythic .filter-btn-dot {
+    background: var(--rarity-mythic);
+}
+
+.filter-btn.rarity-mythic.active {
+    border-color: var(--rarity-mythic);
+    box-shadow: 0 0 0 1px var(--rarity-mythic), 0 0 10px -2px var(--rarity-mythic);
+}
+
+.filter-btn.rarity-legendary .filter-btn-dot {
+    background: var(--rarity-legendary);
+}
+
+.filter-btn.rarity-legendary.active {
+    border-color: var(--rarity-legendary);
+    box-shadow: 0 0 0 1px var(--rarity-legendary), 0 0 10px -2px var(--rarity-legendary);
+}
+
+.filter-btn.rarity-relic .filter-btn-dot {
+    background: var(--rarity-relic);
+}
+
+.filter-btn.rarity-relic.active {
+    border-color: var(--rarity-relic);
+    box-shadow: 0 0 0 1px var(--rarity-relic), 0 0 12px -1px var(--rarity-relic);
 }
